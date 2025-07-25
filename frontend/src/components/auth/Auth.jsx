@@ -32,8 +32,6 @@ const Auth = () => {
     mutationFn: loginUser,
     onSuccess: (data) => {
       localStorage.setItem("token", data?.data?.token)
-      console.log(data);
-
       navigate("/dashboard")
       toast.success(data?.data?.message || "Login")
     },
@@ -45,7 +43,7 @@ const Auth = () => {
   const registerMutation = useMutation({
     mutationFn: registerUser,
     onSuccess: (data) => {
-      toast.success(data?.message)
+      toast.success(data?.message || "Registered")
       setIsLogin(true);
     },
     onError: (err) => {

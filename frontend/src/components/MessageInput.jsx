@@ -7,7 +7,10 @@ const MessageInput = ({ room, username }) => {
   const querClient = useQueryClient()
 
   const sendMessage = () => {
-    if (!input.trim()) return;
+    if (!input.trim()) {
+      alert("Message Required");
+      return;
+    }
     setInput("");
     socket.emit("chatMessage", { roomName: room, senderId: username?._id, message: input, username: username?.username })
     querClient.invalidateQueries("roomMessages")

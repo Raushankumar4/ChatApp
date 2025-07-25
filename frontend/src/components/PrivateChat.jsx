@@ -44,7 +44,10 @@ export const PrivateChat = () => {
   }, [pvtMessages]);
 
   const handleSend = () => {
-    if (!message.trim()) return;
+    if (!message.trim()) {
+      alert("Message Required");
+      return;
+    }
 
     socket.emit("privateMessage", {
       senderId: myUserId,
