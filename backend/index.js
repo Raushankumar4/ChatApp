@@ -8,14 +8,16 @@ import cookieParser from "cookie-parser";
 import { handleSocket } from "./socket/socket.js";
 import { errorHandler } from "./middleware/errorHandler.js";
 import { connectDB } from "./db/connectDB.js";
+import authRoutes from "./routes/user.routes.js";
+import chatRoutes from "./routes/chat.routes.js";
 
 dotenv.config();
 
 const app = express();
 
 // Middleware
-app.use(cors(corsOptions));
 app.use(express.json());
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
@@ -27,7 +29,10 @@ const io = new Server(server, options);
 handleSocket(io);
 
 //Routes
-app.get("/", (req, res) => {
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/chat", chatRoutes);
+
+app.get("/", (_, res) => {
   res.send("Server is Running");
 });
 

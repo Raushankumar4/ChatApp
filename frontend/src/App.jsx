@@ -1,21 +1,10 @@
-import { useEffect } from "react"
-import socket from "./socket/socket"
+
+import Auth from "./components/auth/Auth";
+
 
 function App() {
 
-  useEffect(() => {
-    socket.on("connection", (socket) => {
-      console.log(`Connect ${socket.id}`);
-    })
-    return () => socket.off("connection")
-  }, [])
-
-
-  return (
-    <>
-      <h1>Chat Appp</h1>
-    </>
-  )
+  return <Auth />;
 }
 
-export default App
+export default App;

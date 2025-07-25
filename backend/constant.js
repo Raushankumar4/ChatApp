@@ -1,3 +1,6 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 export const options = {
   cors: {
     origin: process.env.CLIENT_URI || "http://localhost:5173",
